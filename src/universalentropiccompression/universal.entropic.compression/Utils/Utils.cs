@@ -7,6 +7,7 @@ namespace universal.entropic.compression.Utils
 {
     public class Utils
     {
+        public const int MAX_LINES_BUFFER = 100000;
         public static class FilesPath
         {
             public const string Alice29 = @"C:\Users\amanda\Documents\GitHub\universal.entropic.compression\src\universalentropiccompression\universal.entropic.compression\Files\alice29.txt";
@@ -26,7 +27,12 @@ namespace universal.entropic.compression.Utils
             Unaria = 3,
             [Description("Delta")]
             Delta = 4
-        } 
+        }
+        public enum GolombParm
+        { 
+            [Description("GolombK")]
+            K = 4
+        }
         public enum Result 
         { 
             Success, 

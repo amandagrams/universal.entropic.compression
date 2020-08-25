@@ -4,8 +4,8 @@ using System.Text;
 
 namespace universal.entropic.compression.Domain.Contracts.Services
 {
-    public interface IBaseEncode
+    public interface IBaseEncode : IFile
     {
-        void Encode(string File);
+        StringBuilder Encode(int encodeValue);
     }
 }

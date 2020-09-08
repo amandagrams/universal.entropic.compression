@@ -52,15 +52,16 @@ namespace universal.entropic.compression
                     GolombDecode(Archive.sum);
                     return true;
                 case "5":
-                    GolombDecode(Archive.alice29);
+                    EliasGammaEncode(Archive.alice29);
                     return true;
                 case "6":
-                    GolombEncode(Archive.sum);
+                    EliasGammaDecode(Archive.alice29);
                     return true;
                 case "7":
-                    GolombDecode(Archive.sum);
+                    EliasGammaEncode(Archive.sum);
                     return true;
                 case "8":
+                    EliasGammaDecode(Archive.sum);
                     return false;
                 default:
                     return true;
@@ -98,6 +99,31 @@ namespace universal.entropic.compression
             var golombD = new Golomb((int)GolombParm.K, (int)EncodingTypes.Golomb, (int)GolombParm.K);
             var gololmbDecode = golombD.Decode(file.ReadAllBytes(GetDirectoryFileEncodingWrite(archive)));
             var strDecode = Encoding.ASCII.GetString(gololmbDecode);
+            file.Write(GetDirectoryFileEncodingWriteDecoded(archive), strDecode);
+            DisplayResult("Decode ok, view the file on " + GetDirectoryFileEncodingWriteDecoded(archive));
+        }
+
+        private static void EliasGammaEncode(Archive archive)
+        {
+            var file = new Files();
+            Encoding ascii = Encoding.ASCII;
+            Byte[] asciiEncodedBytes = ascii.GetBytes(file.ReadAllBytes(GetFileEncoding(archive)));
+            var eliasGamma = new EliasGamma((int)EncodingTypes.EliasGamma);
+            Console.WriteLine("Encoded to " + GetDescription(EncodingTypes.EliasGamma));
+            foreach (Byte b in asciiEncodedBytes)
+                eliasGamma.Encode(b);
+
+            file.Write(GetDirectoryFileEncodingWrite(archive), eliasGamma.ResultSymbol.ToString());
+            DisplayResult("Encode ok, view the file on " + GetDirectoryFileEncodingWrite(archive));
+        }
+
+        private static void EliasGammaDecode(Archive archive)
+        {
+            var file = new Files();
+            Console.WriteLine("Decoded to " + GetDescription(EncodingTypes.EliasGamma));
+            var eliasGamma = new EliasGamma((int)EncodingTypes.EliasGamma);
+            var eliasGammaDecode = eliasGamma.Decode(file.ReadAllBytes(GetDirectoryFileEncodingWrite(archive)));
+            var strDecode = Encoding.ASCII.GetString(eliasGammaDecode);
             file.Write(GetDirectoryFileEncodingWriteDecoded(archive), strDecode);
             DisplayResult("Decode ok, view the file on " + GetDirectoryFileEncodingWriteDecoded(archive));
         }

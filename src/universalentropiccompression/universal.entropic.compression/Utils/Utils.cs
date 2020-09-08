@@ -1,20 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
+using System.IO;
+using System.Reflection;
 using System.Text;
 
 namespace universal.entropic.compression.Utils
 {
     public class Utils
     {
-        public const int MAX_LINES_BUFFER = 100000;
-        public static class FilesPath
-        {
-            public const string Alice29 = @"C:\Users\amanda\Documents\GitHub\universal.entropic.compression\src\universalentropiccompression\universal.entropic.compression\Files\alice29.txt";
-            public const string Sum = @"C:\Users\amanda\Documents\GitHub\universal.entropic.compression\src\universalentropiccompression\universal.entropic.compression\Files\sum";
-            public const string TesteFile = @"C:\Users\amanda\Documents\GitHub\universal.entropic.compression\src\universalentropiccompression\universal.entropic.compression\Files\teste.txt";
-        }
-
+        public const string FolderArchiveName = "Archive";
+        public const string FolderArchiveOutputName = "output";
         public enum EncodingTypes
         {
             [Description("Golomb")]
@@ -28,15 +25,50 @@ namespace universal.entropic.compression.Utils
             [Description("Delta")]
             Delta = 4
         }
+
+        public enum Archive
+        {
+            [Description("alice29.txt")]
+            alice29 = 0,
+            [Description("sum")]
+            sum = 1,
+            [Description("teste.txt")]
+            teste = 2
+        }
         public enum GolombParm
-        { 
+        {
             [Description("GolombK")]
             K = 4
         }
-        public enum Result 
-        { 
-            Success, 
-            Error 
+        public enum Result
+        {
+            Success,
+            Error
+        }
+
+        public static string GetDirectoryFileEncodingRead() =>
+            Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\" + FolderArchiveName + @"\";
+
+        public static string GetFileEncoding(Archive archive)
+        {
+            return GetDirectoryFileEncodingRead() + GetDescription(archive);
+        }
+        public static string GetDirectoryFileEncodingWrite(Archive archive) =>
+             Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + @"\" + FolderArchiveOutputName + @"\"+ archive + @".cod";
+
+        public static string GetDirectoryFileEncodingWriteDecoded(Archive archive) =>
+            Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + @"\" + FolderArchiveOutputName + @"\" + GetDescription(archive);
+
+
+        public static string GetDescription(Enum value)
+        {
+            FieldInfo field = value.GetType().GetField(value.ToString());
+
+            DescriptionAttribute attribute
+                    = Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute))
+                        as DescriptionAttribute;
+
+            return attribute == null ? value.ToString() : attribute.Description;
         }
     }
 }

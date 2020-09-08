@@ -4,9 +4,9 @@ using System.Text;
 
 namespace universal.entropic.compression.Domain.Contracts.Services
 {
-    public interface IBaseDecode : IFile
+    public interface IBaseDecode 
     {
-        void Decode(string File);      
+        byte[] Decode(string File);      
 
     }
 }

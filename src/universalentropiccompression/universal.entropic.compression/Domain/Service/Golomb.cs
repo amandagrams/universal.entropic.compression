@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using universal.entropic.compression.Domain.Contracts.Services;
@@ -8,7 +9,7 @@ using static universal.entropic.compression.Utils.Utils;
 
 namespace universal.entropic.compression.Domain.Service
 {
-    public class Golomb : IBaseEncode
+    public class Golomb : IBaseEncode, IBaseDecode
     {
         public int Divider { get; set; }
         public int Suffix { get; set; }
@@ -41,7 +42,6 @@ namespace universal.entropic.compression.Domain.Service
 
             var K = Math.Pow(2, Suffix);
 
-
             if (remainder < K)
             {
                 var binaryRemainder = Convert.ToString(remainder, toBase: Suffix);            
@@ -59,7 +59,6 @@ namespace universal.entropic.compression.Domain.Service
             else 
             {
                 var binaryRemainder = Convert.ToString(remainder + (int)K, toBase: Suffix);
-                //ResultSymbol.Append(Convert.ToString(remainder + (int)K, toBase: Suffix));
                 if (binaryRemainder.Length < Suffix)
                 {
                     var tratamentos = Enumerable.Repeat(0, Suffix + 1 - ResultSymbol.Length);
@@ -70,17 +69,113 @@ namespace universal.entropic.compression.Domain.Service
            return ResultSymbol;
         }
 
-        public string Read(string Path)
+        public byte[] Decode(string File)
         {
-            var read = "97";
-            return read;
-            
-        }
-        public void Write(string Path)
-        {
+            var decodeString = new StringBuilder();
+            var listStrings = new List<string>();
            
-            throw new NotImplementedException();
+            if (isValid(File)) 
+            {
+                //Remove bits controle
+                var file = File.Remove(0, 2);
+                var q = new int();
+                var stopBit = false;
+                var b = (int)GolombParm.K;                
+                var binaryValue = string.Empty;
+                var suffix = (int)Math.Log2((int)GolombParm.K);
+                var flagSuffix = (int)Math.Log2((int)GolombParm.K);
+
+                foreach (var item in file)
+                {
+                   if(!stopBit && item == '0')
+                   {
+                        q += 1;
+                        continue;
+                   }
+                   //StopBit
+                   if (item == '1' && !stopBit)
+                   {
+                        stopBit = true;
+                        continue;
+                   }
+
+                    if (stopBit && flagSuffix > 0) 
+                    {
+                        binaryValue += item;
+                        flagSuffix -= 1;
+                        continue;
+                    }
+                   
+                   if (stopBit && flagSuffix == 0) 
+                   {
+                       if (binaryValue.Count() == suffix)
+                       {
+                           binaryValue = Convert.ToInt32(binaryValue, 2).ToString();
+                           
+                       }
+                        var tmp = (q * b) + int.Parse(binaryValue);
+                        listStrings.Add(tmp.ToString());                      
+                        binaryValue = string.Empty;
+                        flagSuffix = suffix;
+                        stopBit = false;
+                        q = 1;
+                        tmp = 0;
+                        continue;
+                   }
+                }                
+            }
+            return GetByteArray(listStrings);
+        }        
+        public bool isValid(string File) 
+        {
+            if (isGolombEncodeFile(File[0]))
+            {
+
+                if (isValidKValue(File[1]))
+                {
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("This file does not have a valid K value");
+                    return false;
+                }
+            }
+            else
+            {
+                Console.WriteLine("This file was not encoded with the Golomb algorithm");
+                return false;
+            }
+
         }
+        public bool isGolombEncodeFile(char value) 
+        {
+            if (value.ToInt() == (int)EncodingTypes.Golomb) 
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool isValidKValue(char value) 
+        {
+            if (value.ToInt() == (int) GolombParm.K)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public byte[] GetByteArray(List<string> values) 
+        {
+            Byte[] buffer = new Byte[values.Count];
+            for (int i = 0; i < values.Count; i++)
+            {
+                buffer[i] = Convert.ToByte(values[i]);
+            }
+            return buffer;
+        }
+
 
     }
 }

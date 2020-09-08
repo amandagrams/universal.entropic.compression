@@ -22,5 +22,13 @@ namespace universal.entropic.compression.Utils
             return Convert.ToString(data, 2).PadLeft(8, '0');
 
         }
+
+        public static int ToInt(this char data)
+        {
+            return int.Parse(data.ToString()); 
+        }
+
+
+        
     }
 }

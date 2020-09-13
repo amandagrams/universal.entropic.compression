@@ -96,7 +96,13 @@ namespace universal.entropic.compression
                     UnaryDecode(Archive.sum);
                     return true;
                 case "17":
-                    return false;
+                    var file = new Files();
+                    Encoding ascii = Encoding.ASCII;
+                    Byte[] asciiEncodedBytes = ascii.GetBytes(file.ReadAllBytes(GetFileEncoding(Archive.teste)));
+
+                    var delta = new Delta((int)EncodingTypes.Delta);
+                    delta.Encode(asciiEncodedBytes, asciiEncodedBytes.Length);
+                    return true;
                 default:
                     return true;
             }

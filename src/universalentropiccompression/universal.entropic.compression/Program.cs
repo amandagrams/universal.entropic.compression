@@ -36,7 +36,11 @@ namespace universal.entropic.compression
             Console.WriteLine("10) Decode with Fibonacci- Alice29.txt");
             Console.WriteLine("11) Encode with Fibonacci- sum");
             Console.WriteLine("12) Decode with Fibonacci- sum.cod");
-            Console.WriteLine("13) Exit");
+            Console.WriteLine("13) Encode with Unary- Alice29.txt");
+            Console.WriteLine("14) Decode with Unary- Alice.cod");
+            Console.WriteLine("15) Encode with Unary- sum");
+            Console.WriteLine("16) Decode with Unary- sum.cod");
+            Console.WriteLine("17) Exit");
             Console.Write("\r\nSelect an option: ");
 
            
@@ -80,6 +84,18 @@ namespace universal.entropic.compression
                     FibonacciDecode(Archive.sum);
                     return true;
                 case "13":
+                    UnaryEncode(Archive.alice29);
+                    return true;
+                case "14":
+                    UnaryDecode(Archive.alice29);
+                    return true;
+                case "15":
+                    UnaryEncode(Archive.sum);
+                    return true;
+                case "16":
+                    UnaryDecode(Archive.sum);
+                    return true;
+                case "17":
                     return false;
                 default:
                     return true;
@@ -167,6 +183,30 @@ namespace universal.entropic.compression
             var fibo = new Fibonacci((int)EncodingTypes.Fibonacci);
             var fiboDecode = fibo.Decode(file.ReadAllBytes(GetDirectoryFileEncodingWrite(archive)));
             var strDecode = Encoding.ASCII.GetString(fiboDecode);
+            file.Write(GetDirectoryFileEncodingWriteDecoded(archive), strDecode);
+            DisplayResult("Decode ok, view the file on " + GetDirectoryFileEncodingWriteDecoded(archive));
+        }
+        private static void UnaryEncode(Archive archive)
+        {
+            var file = new Files();
+            Encoding ascii = Encoding.ASCII;
+            Byte[] asciiEncodedBytes = ascii.GetBytes(file.ReadAllBytes(GetFileEncoding(archive)));
+            var unary = new Unary((int)EncodingTypes.Unaria);
+            Console.WriteLine("Encoded to " + GetDescription(EncodingTypes.Unaria));
+            foreach (Byte b in asciiEncodedBytes)
+                unary.Encode(b);
+
+            file.Write(GetDirectoryFileEncodingWrite(archive), unary.ResultSymbol.ToString());
+            DisplayResult("Encode ok, view the file on " + GetDirectoryFileEncodingWrite(archive));
+        }
+
+        private static void UnaryDecode(Archive archive)
+        {
+            var file = new Files();
+            Console.WriteLine("Decoded to " + GetDescription(EncodingTypes.Unaria));
+            var unary = new Unary((int)EncodingTypes.Unaria);
+            var unaryDecode = unary.Decode(file.ReadAllBytes(GetDirectoryFileEncodingWrite(archive)));
+            var strDecode = Encoding.ASCII.GetString(unaryDecode);
             file.Write(GetDirectoryFileEncodingWriteDecoded(archive), strDecode);
             DisplayResult("Decode ok, view the file on " + GetDirectoryFileEncodingWriteDecoded(archive));
         }

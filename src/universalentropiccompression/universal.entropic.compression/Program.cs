@@ -32,7 +32,11 @@ namespace universal.entropic.compression
             Console.WriteLine("6) Decode with Elias Gamma - Alice29.cod");
             Console.WriteLine("7) Encode with Elias Gamma - sum");
             Console.WriteLine("8) Decode with Elias Gamma - sum.cod");
-            Console.WriteLine("7) Exit");
+            Console.WriteLine("9) Encode with Fibonacci- Alice29.txt");
+            Console.WriteLine("10) Decode with Fibonacci- Alice29.txt");
+            Console.WriteLine("11) Encode with Fibonacci- sum");
+            Console.WriteLine("12) Decode with Fibonacci- sum.cod");
+            Console.WriteLine("13) Exit");
             Console.Write("\r\nSelect an option: ");
 
            
@@ -62,6 +66,20 @@ namespace universal.entropic.compression
                     return true;
                 case "8":
                     EliasGammaDecode(Archive.sum);
+                    return true;
+                case "9":
+                    FibonacciEncode(Archive.alice29);
+                    return true;
+                case "10":
+                    FibonacciDecode(Archive.alice29);
+                    return true;
+                case "11":
+                    FibonacciEncode(Archive.sum);
+                    return true;
+                case "12":
+                    FibonacciDecode(Archive.sum);
+                    return true;
+                case "13":
                     return false;
                 default:
                     return true;
@@ -124,6 +142,31 @@ namespace universal.entropic.compression
             var eliasGamma = new EliasGamma((int)EncodingTypes.EliasGamma);
             var eliasGammaDecode = eliasGamma.Decode(file.ReadAllBytes(GetDirectoryFileEncodingWrite(archive)));
             var strDecode = Encoding.ASCII.GetString(eliasGammaDecode);
+            file.Write(GetDirectoryFileEncodingWriteDecoded(archive), strDecode);
+            DisplayResult("Decode ok, view the file on " + GetDirectoryFileEncodingWriteDecoded(archive));
+        }
+
+        private static void FibonacciEncode(Archive archive) 
+        {
+            var file = new Files();
+            Encoding ascii = Encoding.ASCII;
+            Byte[] asciiEncodedBytes = ascii.GetBytes(file.ReadAllBytes(GetFileEncoding(archive)));
+            var fibo = new Fibonacci((int)EncodingTypes.Fibonacci);
+            Console.WriteLine("Encoded to " + GetDescription(EncodingTypes.Fibonacci));
+            foreach (Byte b in asciiEncodedBytes)
+                fibo.Encode(b);
+
+            file.Write(GetDirectoryFileEncodingWrite(archive), fibo.ResultSymbol.ToString());
+            DisplayResult("Encode ok, view the file on " + GetDirectoryFileEncodingWrite(archive));
+        }
+
+        private static void FibonacciDecode(Archive archive)
+        {
+            var file = new Files();
+            Console.WriteLine("Decoded to " + GetDescription(EncodingTypes.Fibonacci));
+            var fibo = new Fibonacci((int)EncodingTypes.Fibonacci);
+            var fiboDecode = fibo.Decode(file.ReadAllBytes(GetDirectoryFileEncodingWrite(archive)));
+            var strDecode = Encoding.ASCII.GetString(fiboDecode);
             file.Write(GetDirectoryFileEncodingWriteDecoded(archive), strDecode);
             DisplayResult("Decode ok, view the file on " + GetDirectoryFileEncodingWriteDecoded(archive));
         }

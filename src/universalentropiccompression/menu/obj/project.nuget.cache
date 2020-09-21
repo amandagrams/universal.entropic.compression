@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "0j/izSFBej1MZ4HqZ4K5VdpsvnPr5znSFflV5x1xG4Io+kf6pHCknfuVQx/4i926L/fuKozedqR6YQx62DhZkA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\amanda\\Documents\\GitHub\\universal.entropic.compression\\src\\universalentropiccompression\\menu\\menu.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\amanda\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

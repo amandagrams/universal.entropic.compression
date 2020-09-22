@@ -15,15 +15,15 @@ namespace universal.entropic.compression.Utils
         public enum EncodingTypes
         {
             [Description("Golomb")]
-            Golomb = 0,
+            Golomb = 04,
             [Description("Elias-Gamma")]
-            EliasGamma = 1,
+            EliasGamma = 10,
             [Description("Fibonacci")]
-            Fibonacci = 2,
+            Fibonacci = 20,
             [Description("Unária")]
-            Unaria = 3,
+            Unaria = 30,
             [Description("Delta")]
-            Delta = 4
+            Delta = 40
         }
 
         public enum Archive

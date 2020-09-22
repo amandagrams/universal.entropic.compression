@@ -6,7 +6,7 @@ namespace universal.entropic.compression.Domain.Contracts.Services
 {
     public interface IFiles
     {
-       string ReadAllBytes(string path);
-        void Write(string path, string value);
+       byte[] ReadAllBytes(string path, bool EncodeDecode);
+       void Write(string path, byte[] value, bool EncodeDecode, byte[] info);
     }
 }

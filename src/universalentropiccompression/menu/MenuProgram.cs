@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace menu
 {
-    public abstract class Program
+    public abstract class MenuProgram
     {
         protected string Title { get; set; }
 
@@ -25,7 +25,7 @@ namespace menu
 
         public bool NavigationEnabled { get { return History.Count > 1; } }
 
-        protected Program(string title, bool breadcrumbHeader)
+        protected MenuProgram(string title, bool breadcrumbHeader)
         {
             Title = title;
             Pages = new Dictionary<Type, Page>();

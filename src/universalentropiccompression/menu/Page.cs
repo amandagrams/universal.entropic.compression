@@ -9,9 +9,9 @@ namespace menu
     {
         public string Title { get; private set; }
 
-        public Program Program { get; set; }
+        public MenuProgram Program { get; set; }
 
-        public Page(string title, Program program)
+        public Page(string title, MenuProgram program)
         {
             Title = title;
             Program = program;

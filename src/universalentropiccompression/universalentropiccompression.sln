@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "universal.entropic.compression", "universal.entropic.compression\universal.entropic.compression.csproj", "{488BE682-A345-4C7B-B505-2E57F5E9E696}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FDBEF364-DCDC-407F-A417-9DF5B48F95C2} = {FDBEF364-DCDC-407F-A417-9DF5B48F95C2}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "menu", "menu\menu.csproj", "{FDBEF364-DCDC-407F-A417-9DF5B48F95C2}"
 EndProject

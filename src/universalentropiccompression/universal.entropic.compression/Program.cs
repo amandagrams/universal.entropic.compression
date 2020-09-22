@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using universal.entropic.compression.Domain.Service;
+using universal.entropic.compression.Menu;
 using static universal.entropic.compression.Utils.Utils;
 
 namespace universal.entropic.compression
@@ -12,12 +13,12 @@ namespace universal.entropic.compression
         static void Main(string[] args)
         {
 
-            bool showMenu = true;
-            while (showMenu)
-            {
-                showMenu = MainMenu();
-            }
-  
+            //bool showMenu = true;
+            //while (showMenu)
+            //{
+            //    showMenu = MainMenu();
+            //}
+            new universal.entropic.compression.Menu.MainMenu().Run();
 
         }
         private static bool MainMenu()
@@ -113,7 +114,7 @@ namespace universal.entropic.compression
         private static void DisplayResult(string message)
         {
             Console.WriteLine($"\r\nYour modified string is: {message}");
-            Console.Write("\r\nPress Enter to return to Main Menu");
+            Console.Write("\r\nPress Enter to return to Main MainMenu");
             Console.ReadLine();
         }
         private static void GolombEncode(Archive archive)

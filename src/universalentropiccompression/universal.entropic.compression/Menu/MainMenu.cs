@@ -44,6 +44,9 @@ namespace universal.entropic.compression.Menu
             AddPage(new SumEncodeFibonacci(this));
             AddPage(new SumEncodeGolomb(this));
             AddPage(new SumEncodeUnary(this));
+            AddPage(new AliceEntropyCal(this));
+            AddPage(new SumEntropyCal(this));
+            AddPage(new Entropy(this));
 
 
 

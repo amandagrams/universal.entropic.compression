@@ -10,7 +10,8 @@ namespace universal.entropic.compression.Menu
         public MainPage(MenuProgram menu)
              : base("TGA - Teoria da Informação", menu,
                    new Option("Encoder", () => menu.NavigateTo<Encode>()),
-                   new Option("Decoder", () => menu.NavigateTo<Decoder>()))
+                   new Option("Decoder", () => menu.NavigateTo<Decoder>()),
+                   new Option("Entropy Calc", () => menu.NavigateTo<Entropy>()))
         {
         }
     }

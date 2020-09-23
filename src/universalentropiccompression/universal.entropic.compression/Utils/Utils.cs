@@ -12,6 +12,20 @@ namespace universal.entropic.compression.Utils
     {
         public const string FolderArchiveName = "Archive";
         public const string FolderArchiveOutputName = "output";
+       
+
+        public class Archive 
+        {
+            public static string Alice29File = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Archives\\alice29.txt".ToString();
+            public static string SumFile = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Archives\\sum".ToString();
+
+        }
+        public class FilesEncoded
+        {
+            public static string GolombEncodeAlice = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Golomb\\Alice29.cod".ToString();
+            public static string GolombEncodeSum = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Golomb\\sum.cod".ToString();
+
+        }
         public enum EncodingTypes
         {
             [Description("Golomb")]
@@ -26,7 +40,7 @@ namespace universal.entropic.compression.Utils
             Delta = 40
         }
 
-        public enum Archive
+        public enum Archives
         {
             [Description("alice29.txt")]
             alice29 = 0,
@@ -49,14 +63,14 @@ namespace universal.entropic.compression.Utils
         public static string GetDirectoryFileEncodingRead() =>
             Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\" + FolderArchiveName + @"\";
 
-        public static string GetFileEncoding(Archive archive)
+        public static string GetFileEncoding(Archives archive)
         {
             return GetDirectoryFileEncodingRead() + GetDescription(archive);
         }
-        public static string GetDirectoryFileEncodingWrite(Archive archive) =>
+        public static string GetDirectoryFileEncodingWrite(Archives archive) =>
              Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + @"\" + FolderArchiveOutputName + @"\"+ archive + @".cod";
 
-        public static string GetDirectoryFileEncodingWriteDecoded(Archive archive) =>
+        public static string GetDirectoryFileEncodingWriteDecoded(Archives archive) =>
             Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + @"\" + FolderArchiveOutputName + @"\" + GetDescription(archive);
 
 

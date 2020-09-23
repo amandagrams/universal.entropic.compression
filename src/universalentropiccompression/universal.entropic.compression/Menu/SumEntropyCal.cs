@@ -21,7 +21,7 @@ namespace universal.entropic.compression.Menu
             Output.WriteLine("");
             Output.WriteLine("Entropy Calc sum file");
             Output.WriteLine("");
-            var file = File.ReadAllText(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Archives\\sum");
+            var file = File.ReadAllText(path: Utils.Utils.Archive.SumFile);
             var entropy = new EntropyCal();
             Output.WriteLine("The Entropy value is: " + entropy.EntropyValue(file).ToString());
             Output.WriteLine("The Entropy bits is: " + entropy.EntropyBits(file).ToString());

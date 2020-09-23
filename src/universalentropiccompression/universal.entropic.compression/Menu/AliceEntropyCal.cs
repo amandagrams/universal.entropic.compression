@@ -1,11 +1,7 @@
 ﻿using menu;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
-using System.Text;
+
 using universal.entropic.compression.Domain.Service;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace universal.entropic.compression.Menu
 {
@@ -22,7 +18,7 @@ namespace universal.entropic.compression.Menu
             Output.WriteLine("");
             Output.WriteLine("Entropy Calc Alice29.txt file");
             Output.WriteLine("");
-            var file = File.ReadAllText(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Archives\\alice29.txt");
+            var file = File.ReadAllText(path: Utils.Utils.Archive.Alice29File);
             var entropy = new EntropyCal();
             Output.WriteLine("The Entropy value is: " + entropy.EntropyValue(file).ToString());
             Output.WriteLine("The Entropy bits is: " + entropy.EntropyBits(file).ToString());

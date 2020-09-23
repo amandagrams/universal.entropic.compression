@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using universal.entropic.compression.Domain.Contracts.Services;
@@ -9,64 +10,77 @@ using static universal.entropic.compression.Utils.Utils;
 
 namespace universal.entropic.compression.Domain.Service
 {
-    public class Golomb : IBaseEncode, IBaseDecode
+    public class Golomb  
     {
         public int Divider { get; set; }
         public int Suffix { get; set; }
         public IEnumerable <int> Prefix { get; set; }
         public int StopBit { get; set; }
         public StringBuilder ResultSymbol { get; set; }
+        List<string> resultBytes { get; set; }
 
         public Golomb(int divider, int encoder, int parm) 
         {
             Divider = divider;
             Suffix = (int)Math.Log2(Divider);
             StopBit = 1;
-            ResultSymbol = new StringBuilder();
-            ResultSymbol.Append(encoder).Append(parm);            
+            resultBytes = new List<string>();
+        }
+
+        public byte[] Encoder(byte[] values)
+        {
+
+            foreach (byte value in values)
+            {
+
+                Encode(value);
+            }
+
+            return GetByteArray(resultBytes);
+           
         }
 
 
-        public StringBuilder Encode(int symbol)
+        public List<string> Encode(int symbol)
         {
             var remainder = new int();
-            var quotient = Math.DivRem(symbol,Divider,out remainder);
+            var quotient = Math.DivRem(symbol, Divider, out remainder);
 
             Prefix = Enumerable.Repeat(0, quotient).Append(StopBit);
-            
+
             Prefix.ToList().ForEach(delegate (int x)
             {
-                ResultSymbol.Append(x);
-               
+                resultBytes.Add(x.ToString());
+
             });
 
             var K = Math.Pow(2, Suffix);
 
             if (remainder < K)
             {
-                var binaryRemainder = Convert.ToString(remainder, toBase: Suffix);            
-                
-                
+                var binaryRemainder = Convert.ToString(remainder, toBase: Suffix);
+
+
                 if (binaryRemainder.Length < Suffix)
                 {
                     var tratamento = Enumerable.Repeat(0, Suffix - 1);
-                    tratamento.ToList().ForEach(delegate (int x) { ResultSymbol.Append(x); });
-                    
+                    tratamento.ToList().ForEach(delegate (int x) { resultBytes.Add(x.ToString()); });
+
                 }
 
-                ResultSymbol.Append(binaryRemainder);
+                resultBytes.Add(binaryRemainder);
             }
-            else 
+            else
             {
                 var binaryRemainder = Convert.ToString(remainder + (int)K, toBase: Suffix);
                 if (binaryRemainder.Length < Suffix)
                 {
                     var tratamentos = Enumerable.Repeat(0, Suffix + 1 - ResultSymbol.Length);
-                    tratamentos.ToList().ForEach(delegate (int x) { ResultSymbol.Append(x); });
+                    tratamentos.ToList().ForEach(delegate (int x) { resultBytes.Add(x.ToString()); });
                 }
             }
 
-           return ResultSymbol;
+            return resultBytes;
         }
 
         public byte[] Decode(string File)

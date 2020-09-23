@@ -26,7 +26,7 @@ namespace universal.entropic.compression.Domain.Service
             return null;                       
         }
 
-        public void Write(string path, byte[] value, bool EncodeDecode, byte[] info)
+        public void WriteByte(string path, byte[] value, bool EncodeDecode, byte[] info)
         {
 
            
@@ -38,6 +38,13 @@ namespace universal.entropic.compression.Domain.Service
                 {
                      File.WriteAllBytes(path,value);
                 }
+           
+        }
+
+        public void WriteText(string path, string  value)
+        {
+
+                File.WriteAllText(path, value);
            
         }
 

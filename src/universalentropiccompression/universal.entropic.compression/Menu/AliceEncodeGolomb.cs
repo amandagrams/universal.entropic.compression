@@ -23,7 +23,7 @@ namespace universal.entropic.compression.Menu
 
             var golomb = new Golomb((int)GolombParm.K, (int)EncodingTypes.Golomb, (int)GolombParm.K);
             
-            documents.Write(FilesEncoded.GolombEncodeAlice, golomb.Encoder(documents.ReadAllBytes(Utils.Utils.Archive.Alice29File, true)), true, Documents.Information.Golomb);
+            documents.WriteByte(FilesEncoded.GolombEncodeAlice, golomb.Encoder(documents.ReadAllBytes(Utils.Utils.Archive.Alice29File, true)), true, Documents.Information.Golomb);
 
             Output.WriteLine(System.ConsoleColor.Green, "View the file encoded in: " + Utils.Utils.FilesEncoded.GolombEncodeAlice.ToString());
 

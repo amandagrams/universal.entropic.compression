@@ -26,6 +26,13 @@ namespace universal.entropic.compression.Utils
             public static string GolombEncodeSum = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Golomb\\sum.cod".ToString();
 
         }
+
+        public class FilesDecoded
+        {
+            public static string GolombDecodeAlice = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Golomb\\Alice29.dec".ToString();
+            public static string GolombDecodeSum = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Golomb\\sum.dec".ToString();
+
+        }
         public enum EncodingTypes
         {
             [Description("Golomb")]

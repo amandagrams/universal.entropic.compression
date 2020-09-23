@@ -83,15 +83,16 @@ namespace universal.entropic.compression.Domain.Service
             return resultBytes;
         }
 
-        public byte[] Decode(string File)
+        public byte[] Decode(byte[] File)
         {
             var decodeString = new StringBuilder();
             var listStrings = new List<string>();
-           
-            if (isValid(File)) 
+            var file = new StringBuilder();
+            foreach (var item in File)
             {
-                //Remove bits controle
-                var file = File.Remove(0, 2);
+                file.Append(item);
+            }
+                //var archive = file.Remove(0, 2);
                 var q = new int();
                 var stopBit = false;
                 var b = (int)GolombParm.K;                
@@ -99,7 +100,7 @@ namespace universal.entropic.compression.Domain.Service
                 var suffix = (int)Math.Log2((int)GolombParm.K);
                 var flagSuffix = (int)Math.Log2((int)GolombParm.K);
 
-                foreach (var item in file)
+                foreach (var item in file.ToString())
                 {
                    if(!stopBit && item == '0')
                    {
@@ -136,7 +137,7 @@ namespace universal.entropic.compression.Domain.Service
                         tmp = 0;
                         continue;
                    }
-                }                
+                    
             }
             return GetByteArray(listStrings);
         }        

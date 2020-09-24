@@ -12,18 +12,17 @@ namespace universal.entropic.compression.Domain.Service
     {
         public  byte[] ReadAllBytes(string path, bool EncodeDecode)
         {
-            if (File.Exists(path)) 
-            {
+          
                 if (EncodeDecode)
                 {
-                    return File.ReadAllBytes(path);
+                    return Encoding.ASCII.GetBytes(File.ReadAllText(path));
                 }
                 else
                 {
-                    return ParseBytesd(File.ReadAllBytes(path));
+                    var result = ParseBytesd2(File.ReadAllBytes(path));
+                    return result;
                 }
-            }
-            return null;                       
+                              
         }
 
         public void WriteByte(string path, byte[] value, bool EncodeDecode, byte[] info)
@@ -32,7 +31,8 @@ namespace universal.entropic.compression.Domain.Service
            
                 if (EncodeDecode)
                 {
-                    File.WriteAllBytes(path,ParseBytesc(value,info));
+                    var teste = ParseBytesc2(value, info);
+                    File.WriteAllBytes(path, teste);
                 }
                 else
                 {
@@ -83,6 +83,33 @@ namespace universal.entropic.compression.Domain.Service
             }
             return output.ToArray();
         }
+
+        public byte[] ParseBytesc2(byte[] data, byte[] info)
+        {
+            MemoryStream output = new MemoryStream();
+            output.Write(info, 0, info.Length);
+            using (DeflateStream dstream = new DeflateStream(output, CompressionLevel.Optimal))
+            {
+                dstream.Write(data, 0, data.Length);
+            }
+
+            return output.ToArray();
+        }
+        public byte[] ParseBytesd2(byte[] datain)
+        {
+            var liste = new List<byte>(datain);
+            liste.RemoveRange(0, 2);
+            byte[] newstream = liste.ToArray();
+
+            MemoryStream input = new MemoryStream(newstream);
+            MemoryStream output = new MemoryStream();
+            using (DeflateStream dstream = new DeflateStream(input, CompressionMode.Decompress))
+            {
+                dstream.CopyTo(output);
+            }
+            return output.ToArray();
+        }
+
 
     }
 }

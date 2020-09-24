@@ -26,6 +26,8 @@ namespace universal.entropic.compression.Menu
             documents.WriteByte(FilesEncoded.GolombEncodeAlice, golomb.Encoder(documents.ReadAllBytes(Utils.Utils.Archive.Alice29File, true)), true, Documents.Information.Golomb);
 
             Output.WriteLine(System.ConsoleColor.Green, "View the file encoded in: " + Utils.Utils.FilesEncoded.GolombEncodeAlice.ToString());
+            Output.WriteLine("");
+            Output.WriteLine("");
 
             Input.ReadString("Press [Enter] to navigate home");
             Program.NavigateHome();

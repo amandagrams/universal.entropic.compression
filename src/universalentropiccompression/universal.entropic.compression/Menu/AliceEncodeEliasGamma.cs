@@ -1,7 +1,10 @@
 ﻿using menu;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using universal.entropic.compression.Domain.Service;
+using static universal.entropic.compression.Utils.Utils;
 
 namespace universal.entropic.compression.Menu
 {
@@ -16,7 +19,12 @@ namespace universal.entropic.compression.Menu
         {
             base.Display();
 
-            Output.WriteLine("Decoding Alice29.txt with Elias Gamma Encode");
+            Output.WriteLine("Encoding Alice29.txt with Elias Gamma Encode");
+
+            var teste = new Teste();
+            var encode = teste.Encoder(File.ReadAllBytes(Archive.Alice29File), (int)EncodingTypes.EliasGamma);
+
+            File.WriteAllBytes(FilesEncoded.EliasGammaEncodeAlice,encode);
 
             Input.ReadString("Press [Enter] to navigate home");
             Program.NavigateHome();

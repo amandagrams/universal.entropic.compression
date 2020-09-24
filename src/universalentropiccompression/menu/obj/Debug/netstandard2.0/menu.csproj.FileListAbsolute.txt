@@ -6,3 +6,4 @@ C:\Users\amanda\Documents\GitHub\universal.entropic.compression\src\universalent
 C:\Users\amanda\Documents\GitHub\universal.entropic.compression\src\universalentropiccompression\menu\obj\Debug\netstandard2.0\menu.csproj.CoreCompileInputs.cache
 C:\Users\amanda\Documents\GitHub\universal.entropic.compression\src\universalentropiccompression\menu\obj\Debug\netstandard2.0\menu.dll
 C:\Users\amanda\Documents\GitHub\universal.entropic.compression\src\universalentropiccompression\menu\obj\Debug\netstandard2.0\menu.pdb
+C:\Users\amanda\Documents\GitHub\universal.entropic.compression\src\universalentropiccompression\menu\obj\Debug\netstandard2.0\menu.csprojAssemblyReference.cache

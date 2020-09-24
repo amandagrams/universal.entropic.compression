@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using universal.entropic.compression.Domain.Service;
+using universal.entropic.compression.Menu.Encoder;
 using static universal.entropic.compression.Utils.Utils;
 
 namespace universal.entropic.compression.Menu
@@ -24,7 +25,7 @@ namespace universal.entropic.compression.Menu
             var documents = new Documents();
 
             var golomb = new Golomb((int)GolombParm.K, (int)EncodingTypes.Golomb, (int)GolombParm.K);
-            //documents.WriteText(Utils.Utils.FilesDecoded.GolombDecodeSum, golomb.Decode(documents.ReadAllBytes(Utils.Utils.FilesEncoded.GolombEncodeSum, false)));
+            documents.WriteText(Utils.Utils.FilesDecoded.GolombDecodeSum, Encoding.ASCII.GetString(golomb.Decode(documents.ReadAllBytes(Utils.Utils.FilesEncoded.GolombEncodeSum, false))));
 
 
             Output.WriteLine(System.ConsoleColor.Green, "View the file decoded in: " + Utils.Utils.FilesDecoded.GolombDecodeSum.ToString());

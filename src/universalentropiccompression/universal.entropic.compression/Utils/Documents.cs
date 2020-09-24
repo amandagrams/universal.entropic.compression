@@ -15,7 +15,7 @@ namespace universal.entropic.compression.Domain.Service
           
                 if (EncodeDecode)
                 {
-                    return Encoding.ASCII.GetBytes(File.ReadAllText(path));
+                    return File.ReadAllBytes(path);
                 }
                 else
                 {

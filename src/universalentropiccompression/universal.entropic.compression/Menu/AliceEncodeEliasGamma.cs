@@ -21,10 +21,10 @@ namespace universal.entropic.compression.Menu
 
             Output.WriteLine("Encoding Alice29.txt with Elias Gamma Encode");
 
-            var teste = new Teste();
-            var encode = teste.Encoder(File.ReadAllBytes(Archive.Alice29File), (int)EncodingTypes.EliasGamma);
+            //var teste = new Teste();
+            //var encode = teste.Encoder(File.ReadAllBytes(Archive.Alice29File), (int)EncodingTypes.EliasGamma);
 
-            File.WriteAllBytes(FilesEncoded.EliasGammaEncodeAlice,encode);
+            //File.WriteAllBytes(FilesEncoded.EliasGammaEncodeAlice,encode);
 
             Input.ReadString("Press [Enter] to navigate home");
             Program.NavigateHome();

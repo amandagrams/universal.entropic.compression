@@ -183,6 +183,7 @@ namespace universal.entropic.compression.Domain.Service
 
         public byte[] GetByteArray(List<string> values) 
         {
+            values.RemoveAll(x => int.Parse(x)> 255);
             Byte[] buffer = new Byte[values.Count];
             for (int i = 0; i < values.Count; i++)
             {

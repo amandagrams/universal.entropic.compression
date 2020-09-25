@@ -1,61 +1,66 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using universal.entropic.compression.Domain.Contracts.Services;
 
 namespace universal.entropic.compression.Domain.Service
 {
-    public class Unary : IBaseEncode, IBaseDecode
+    public class Unary 
     {
-        public StringBuilder ResultSymbol { get; set; }
-        public Unary(int encoder)
+		UnicodeEncoding unicode = new UnicodeEncoding();
+		public List<string> ResultSymbol { get; set; }
+        public Unary()
         {
-            ResultSymbol = new StringBuilder();
-            ResultSymbol.Append(encoder);
-        }
-       
-        public StringBuilder Encode(int encodeValue)
-        {
-
-            for (int i = 0; i < encodeValue; i++) 
-            {
-                ResultSymbol.Append('1');
-            }
-
-            ResultSymbol.Append('0');
-
-            return ResultSymbol;
+            ResultSymbol = new List<string>();
         }
 
-        public byte[] Decode(string File)
+        public byte[] Encode(byte[] values)
         {
-            var file = File.Remove(0, 1);
-            var countOne = 0;
-            var tmpResult = new List<string>();
+			var bools = new List<bool>();
+			
+			foreach (var value in values)
+			{
+				var valueByte = value;
+				var count = 0;
 
-            foreach (var c in file) 
+				while (count < valueByte)
+				{
+					bools.Add(false);  
+					count++;
+				}
+				bools.Add(true); 
+			}
+
+			var convertBoolsInBytes = new byte[(int)Math.Ceiling(bools.Count / 8d)];
+			var bits = new BitArray(bools.ToArray());
+			bits.CopyTo(convertBoolsInBytes, 0);
+
+			return convertBoolsInBytes;
+		}
+
+        public byte[] Decode(byte[] File)
+        {
+            var bits = new BitArray(File);
+            var bools = new bool[bits.Length];
+            bits.CopyTo(bools, 0);
+
+            var bytesToSave = new List<byte>();
+
+            byte x = 0;
+
+            foreach (var b in bools)
             {
-                if (c == '1') 
+                if (!b)
+                    x++;
+                else
                 {
-                    countOne++;
-                }
-                if (c == '0') 
-                {
-                    tmpResult.Add(countOne.ToString());
-                    countOne = 0;
+                    bytesToSave.Add(x);
+                    x = 0;
                 }
             }
-
-            return GetByteArray(tmpResult);
+            return bytesToSave.ToArray();
         }
-        public byte[] GetByteArray(List<string> values)
-        {
-            Byte[] buffer = new Byte[values.Count];
-            for (int i = 0; i < values.Count; i++)
-            {
-                buffer[i] = Convert.ToByte(Convert.ToInt16(values[i]));
-            }
-            return buffer;
-        }
-    }
+	}
 }

@@ -26,6 +26,8 @@ namespace universal.entropic.compression.Utils
             public static string GolombEncodeSum = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Golomb\\sum.cod".ToString();
             public static string EliasGammaEncodeAlice = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\EliasGamma\\Alice29.cod".ToString();
             public static string EliasGammaEncodeSum = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\EliasGamma\\sum.cod".ToString();
+            public static string UnaryEncodeAlice = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Unary\\Alice29.cod".ToString();
+            public static string UnaryEncodeSum = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Unary\\sum.cod".ToString();
 
         }
 
@@ -33,6 +35,10 @@ namespace universal.entropic.compression.Utils
         {
             public static string GolombDecodeAlice = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Golomb\\Alice29.dec".ToString();
             public static string GolombDecodeSum = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Golomb\\sum.dec".ToString();
+            public static string UnaryDecodeAlice = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Unary\\Alice29.dec".ToString();
+            public static string UnaryDecodeSum = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Unary\\sum.dec".ToString();
+            public static string EliasGammaDecodeAlice = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\EliasGamma\\Alice29.dec".ToString();
+            public static string EliasGammaDecodeSum = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\EliasGamma\\sum.dec".ToString();
 
         }
         public enum EncodingTypes

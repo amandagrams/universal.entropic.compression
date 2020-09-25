@@ -124,8 +124,7 @@ namespace universal.entropic.compression.Domain.Service
 
                 bools.Add(true);
 
-                var leftOver = value - biggestPow;
-               
+                var leftOver = value - biggestPow;               
 
                 var binaryString = Convert.ToString(leftOver, 2).PadLeft(pow, '0');
                 foreach (var bit in binaryString)

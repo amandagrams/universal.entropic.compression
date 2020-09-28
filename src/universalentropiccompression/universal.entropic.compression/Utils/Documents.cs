@@ -47,6 +47,12 @@ namespace universal.entropic.compression.Domain.Service
                 File.WriteAllText(path, value);
            
         }
+        public string ReadText(string path)
+        {
+
+            return File.ReadAllText(path);
+
+        }
 
         public class Information 
         {

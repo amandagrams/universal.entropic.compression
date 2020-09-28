@@ -25,7 +25,7 @@ namespace universal.entropic.compression.Menu
 
             var unary = new Unary();
 
-            documents.WriteByte(FilesEncoded.UnaryEncodeSum, unary.Encode(documents.ReadAllBytes(Utils.Utils.Archive.SumFile, true)), true, Documents.Information.Unary);
+            documents.WriteByte(FilesEncoded.UnaryEncodeSum, unary.Encode(documents.ReadAllBytes(Utils.Utils.Archive.SumFile,true)), true, Documents.Information.Unary);
 
             Output.WriteLine(System.ConsoleColor.Green, "View the file encoded in: " + Utils.Utils.FilesEncoded.UnaryEncodeSum.ToString());
             Output.WriteLine("");

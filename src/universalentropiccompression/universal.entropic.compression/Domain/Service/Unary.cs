@@ -8,9 +8,8 @@ using universal.entropic.compression.Domain.Contracts.Services;
 namespace universal.entropic.compression.Domain.Service
 {
     public class Unary 
-    {
-		UnicodeEncoding unicode = new UnicodeEncoding();
-		public List<string> ResultSymbol { get; set; }
+    {   
+        public List<string> ResultSymbol { get; set; }
         public Unary()
         {
             ResultSymbol = new List<string>();
@@ -18,26 +17,24 @@ namespace universal.entropic.compression.Domain.Service
 
         public byte[] Encode(byte[] values)
         {
-			var bools = new List<bool>();
-			
-			foreach (var value in values)
-			{
-				var valueByte = value;
-				var count = 0;
+            var bools = new List<bool>();
 
-				while (count < valueByte)
-				{
-					bools.Add(false);  
-					count++;
-				}
-				bools.Add(true); 
-			}
+            foreach (var c in values)
+            {
 
-			var convertBoolsInBytes = new byte[(int)Math.Ceiling(bools.Count / 8d)];
-			var bits = new BitArray(bools.ToArray());
-			bits.CopyTo(convertBoolsInBytes, 0);
+                for (int i = 0; i < c; i++)
+                {
+                    bools.Add(false);
 
-			return convertBoolsInBytes;
+                }
+                bools.Add(true);
+            }
+
+            BitArray bits = new BitArray(bools.ToArray());
+            byte[] bytes = new byte[bits.Length / 8 + (bits.Length % 8 == 0 ? 0 : 1)];
+            bits.CopyTo(bytes, 0);
+
+            return bytes;
 		}
 
         public byte[] Decode(byte[] File)
@@ -48,16 +45,16 @@ namespace universal.entropic.compression.Domain.Service
 
             var bytesToSave = new List<byte>();
 
-            byte x = 0;
+            byte n = 0;
 
             foreach (var b in bools)
             {
                 if (!b)
-                    x++;
+                    n++;
                 else
                 {
-                    bytesToSave.Add(x);
-                    x = 0;
+                    bytesToSave.Add(n);
+                    n = 0;
                 }
             }
             return bytesToSave.ToArray();

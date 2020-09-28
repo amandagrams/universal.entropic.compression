@@ -23,7 +23,7 @@ namespace universal.entropic.compression.Menu
 
             var documents = new Documents();
 
-            var golomb = new Golomb((int)GolombParm.K, (int)EncodingTypes.Golomb, (int)GolombParm.K);
+            var golomb = new Golomb();
 
             documents.WriteByte(FilesEncoded.GolombEncodeSum, golomb.Encoder(documents.ReadAllBytes(Utils.Utils.Archive.SumFile, true)), true, Documents.Information.Golomb);
 

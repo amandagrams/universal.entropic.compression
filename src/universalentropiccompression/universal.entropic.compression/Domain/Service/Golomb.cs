@@ -19,9 +19,9 @@ namespace universal.entropic.compression.Domain.Service
         public StringBuilder ResultSymbol { get; set; }
         List<string> resultBytes { get; set; }
 
-        public Golomb(int divider, int encoder, int parm) 
+        public Golomb() 
         {
-            Divider = divider;
+            Divider = 4;
             Suffix = (int)Math.Log2(Divider);
             StopBit = 1;
             resultBytes = new List<string>();
@@ -85,14 +85,13 @@ namespace universal.entropic.compression.Domain.Service
 
         public byte[] Decode(byte[] File)
         {
-            var decodeString = new StringBuilder();
             var listStrings = new List<string>();
             var file = new StringBuilder();
             foreach (var item in File)
             {
                 file.Append(item);
             }
-                //var archive = file.Remove(0, 2);
+               
                 var q = new int();
                 var stopBit = false;
                 var b = (int)GolombParm.K;                

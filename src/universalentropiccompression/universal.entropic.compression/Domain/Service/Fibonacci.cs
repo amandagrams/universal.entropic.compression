@@ -1,100 +1,215 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using universal.entropic.compression.Domain.Contracts.Services;
 
 namespace universal.entropic.compression.Domain.Service
 {
-    public class Fibonacci : IBaseEncode
+    public class Fibonacci 
     {
 
         // To limit on the largest Fibonacci number to be used
         public static int Limit = 30;
         public List<int> FibonacciNumbers { get; set; }
-        public StringBuilder ResultSymbol { get; set; }
+        List<byte[]> resultBytes { get; set; }
 
-        public Fibonacci(int encoder)
+        public Fibonacci()
         {
-            FibonacciNumbers = CreateList<int>(Limit);
-            ResultSymbol = new StringBuilder();
-            ResultSymbol.Append(encoder);
+                     
 
         }
 
-        public StringBuilder Encode(int encodeValue)
+        public byte[] Encode(string content)
         {
+            byte[] bytes = Encoding.ASCII.GetBytes(content);
+            int[] bytesAsInts = Array.ConvertAll(bytes, c => Convert.ToInt32(c));
 
-            var index = largestFiboLessOrEqual(encodeValue);
+            int[] fib = new int[20];
+            fib[0] = 0;
+            fib[1] = 1;
 
-            var codeWord = new char[index+2];
+            for (int i = 2; i < fib.Length; i++)
+                fib[i] = fib[i - 1] + fib[i - 2];
 
-            var i = index;
+            int count = 0;
+            int number;
+            List<int> fibLocations = new List<int>();
+            List<string> codewords = new List<string>();
 
-            while (encodeValue != 0) 
+            while (count < bytesAsInts.Length)
             {
-                codeWord[i] = '1';
-                encodeValue = encodeValue - FibonacciNumbers[i];
-                i = i - 1;
-
-                while (i >= 0 && FibonacciNumbers[i] > encodeValue)
+                number = bytesAsInts[count];
+                while (number > 0)
                 {
-                    codeWord[i] = '0';
-                    i = i - 1;
+                    int aux = 0;
+                    while (fib[aux] <= number)
+                    {
+                        aux++;
+                    }
+                    number = number - fib[aux - 1];
+                    fibLocations.Add(aux - 1);
+                }
+                fibLocations.Add(0);    // Separates the locations for each number
+                count++;
+            }
+
+            int[] codesAux = new int[20];
+            string codewordAux = "";
+            int positionAux = fibLocations[0];
+            int totalLength = 0;
+
+            // generate the codewords
+            for (int i = 0; i < fibLocations.Count; i++)
+            {
+                if (i > 0)
+                {
+                    if (fibLocations[i - 1] == 0)
+                    {
+                        positionAux = fibLocations[i];
+                    }
+                }
+                if (fibLocations[i] != 0)
+                {
+                    codesAux[fibLocations[i]] = 1;
+                }
+                else
+                {
+                    codesAux[positionAux + 1] = 1;  // stop bit
+                    for (int j = 2; j <= positionAux + 1; j++)
+                    {
+                        codewordAux += codesAux[j];
+                    }
+                    Array.Clear(codesAux, 0, codesAux.Length);
+                    codewords.Add(codewordAux);
+                    totalLength += codewordAux.Length;
+                    codewordAux = "";
                 }
             }
 
-            //additional '1' bit 
-            codeWord[index + 1] = '1';
-            
+            BitArray bits = new BitArray(totalLength);
+            BitArray bits8 = new BitArray(8);
 
-            //return pointer to codeword 
-            var codeWords = new String(codeWord);
-            return ResultSymbol.Append(codeWords);
+            // fill bits array with codewords
+            count = 0;
+            for (int i = 0; i < codewords.Count; i++)
+            {
+                var res = new BitArray(codewords[i].Select(c => c == '1').ToArray());
+                for (int j = 0; j < res.Count; j++)
+                {
+                    bits[count++] = res[j];
+                }
+            }
+
+            int tam = bits.Count / 8;
+            int resto = bits.Count % 8;
+            byte[] bitToByte = new byte[tam];
+
+            count = 0;
+            int bitCount = 0;
+            for (int i = 0; i < bits.Count; i++)
+            {
+                if (i % 8 == 0 && i != 0)
+                {
+                    bits8.CopyTo(bitToByte, bitCount++);
+                    count = 0;
+                    bits8[count++] = bits[i];
+                }
+                else
+                {
+                    bits8[count++] = bits[i];
+                }
+            }
+            count = 0;
+            tam = bits.Count - 1;
+            for (int i = 0; i < 8; i++)
+            {
+                if (resto > 0)
+                {
+                    bits8[count++] = bits[tam--];
+                    resto--;
+                }
+                else
+                {
+                    bits8[count++] = false;
+                }
+            }
+
+            return bitToByte;
+            //File.WriteAllBytes(path, bitToByte);
         }
 
-        public byte[] Decode(string File)
+        public string Decode(byte[] bytes)
         {
-            //Remove bits controle
-            var file = File.Remove(0, 1);
+            BitArray bits = new BitArray(bytes);
+            List<string> codewords = new List<string>();
+            List<int> intCodes = new List<int>();
+            List<char> charCodes = new List<char>();
 
-            var listFibonacciNumbers = GenerateFibonacciNumbersToDecode();
+            int[] fib = new int[20];
+            fib[0] = 0;
+            fib[1] = 1;
+            for (int i = 2; i < fib.Length; i++)
+                fib[i] = fib[i - 1] + fib[i - 2];
 
-            var tmpResult = new List<int>();
-            var result = new List<string>();
-
-            var count = 0;
-            var stopBit = false;
-            var oldCode = new char();
-            foreach (var code in file) 
+            string codesAux = "";
+            bool a;
+            bool b;
+            for (int i = 0; i < bits.Count; i++)
             {
-                if (code == '0') 
+                if (i < bits.Count - 1)
                 {
-                    count++;
-                    oldCode = code;
-                    continue;
+                    a = bits[i];
+                    b = bits[i + 1];
+                    if (a == true && b == true)
+                    {
+                        codesAux += "1";              // codeword with no stop bit
+                        codewords.Add(codesAux);
+                        codesAux = "";
+                        ++i;
+                    }
+                    else
+                    {
+                        if (bits[i] == false)
+                            codesAux += "0";
+                        else
+                            codesAux += "1";
+                    }
                 }
-                    
-                if (code == '1' && oldCode != code)
+                else
                 {
-                    tmpResult.Add(listFibonacciNumbers[count]);                   
+                    if (bits[i] == false)
+                        codesAux += "0";
+                    else
+                        codesAux += "1";
                 }
+            }
 
-                if (oldCode == code && code == '1')
+            int sum = 0;
+            char numberAux;
+            for (int i = 0; i < codewords.Count; i++)
+            {
+                for (int j = 0; j < codewords[i].Length; j++)
                 {
-                    result.Add(tmpResult.ToList().Sum().ToString());
-                    tmpResult.Clear();
-                    oldCode = '0';
-                    count = 0;
-                    continue;
+                    numberAux = codewords[i][j];
+                    if (numberAux == '1')
+                    {
+                        sum += fib[j + 2];
+                    }
                 }
-               
-                count++;
-                oldCode = code;
+                intCodes.Add(sum);
+                sum = 0;
+            }
 
-            }            
-
-            return GetByteArray(result);
+            string result = "";
+            for (int i = 0; i < intCodes.Count; i++)
+            {
+                charCodes.Add(Convert.ToChar(intCodes[i]));
+                result += charCodes[i];
+            }
+            return result;
         }
 
         public int largestFiboLessOrEqual(int n) 

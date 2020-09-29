@@ -30,6 +30,10 @@ namespace universal.entropic.compression.Utils
             public static string UnaryEncodeSum = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Unary\\sum.cod".ToString();
             public static string FibonacciEncodeAlice = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Fibonacci\\Alice29.cod".ToString();
             public static string FibonacciEncodeSum = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Fibonacci\\sum.cod".ToString();
+            public static string Crc8HammingEncodeGolombAlice = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Golomb\\Alice29.ecc".ToString();
+            public static string Crc8HammingEncodeEliasGammaAlice = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\EliasGamma\\Alice29.ecc".ToString();
+            public static string Crc8HammingEncodeUnaryAlice = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Unary\\Alice29.ecc".ToString();
+            public static string Crc8HammingEncodeFibonacciAlice = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Fibonacci\\Alice29.ecc".ToString();
 
         }
 

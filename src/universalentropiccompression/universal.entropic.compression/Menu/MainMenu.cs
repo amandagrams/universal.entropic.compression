@@ -47,6 +47,9 @@ namespace universal.entropic.compression.Menu
             AddPage(new AliceEntropyCal(this));
             AddPage(new SumEntropyCal(this));
             AddPage(new Entropy(this));
+            AddPage(new CRC8(this));
+            AddPage(new DoCrc8(this));
+
 
 
 

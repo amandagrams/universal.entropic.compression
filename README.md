@@ -7,33 +7,52 @@
 </p>
 
 > Este projeto tem como objetivo elaborar uma solução computacional que codifique(compacte) e decodifique(descompacte) arquivos, utilizando os seguintes codificadores:
-   *	Golomb
-   *	Elias Gamma
-   *	Fibonacci
-   *	Unary
-   *	Delta
+  ```
+         Golomb
+         Elias Gamma
+         Fibonacci
+         Unary
+         Delta
+   ```
 >A ideia é desenvolver uma solução de compactação utilizando abordagens de codificação a nível de símbolo, mas que também trate a ocorrência da repetição simples de símbolos ao longo do texto.
 O trabalho também tem o objetivo de implementar o CRC-8 para os dois primeiros bytes de um arquivo já codificado e adicionar 7bits de paridade Hamming a cada 4 bits lidos.
 
 ## Abordagem / Funcionamento
+
 >Cada codificador possui uma classe de serviço que é instanciada ao selecionar o codificador no menu, cada classe implementa um método de encode e decode, que são chamados quando selecionados no menu.
 Na camada de serviço estão as classes responsáveis pelo cálculo do CRC-8 e também a classe responsável pelo cálculo dos 7bits Hamming de paridade.
 Há uma opção no menu para aplicar o CRC-8 e Hamming aos arquivos já codificados. 
 Também foi implementado o cálculo da entropia para os arquivos Alice29.txt e sum.
+
 
 ![image](https://user-images.githubusercontent.com/4412478/94617651-54666c00-0280-11eb-967b-348ccf9186a4.png)
 
 ## Limitações
 
 ### Elias Gamma :calendar:
->Limitação na hora de codificar/decodificar o arquivo sum
-### Golomb :calendar:
->Limitação na hora de decodificar o arquivo sum.
-### Fibonacci :calendar:
->Limitação na hora de decodificar o arquivo sum.
-### CRC-8 e Hamming :calendar:
->Foi implementada a decodificação, mas não foi aplicada aos arquivos ainda.
 
+```
+Limitação na hora de codificar/decodificar o arquivo sum
+
+```
+### Golomb :calendar:
+
+```
+Limitação na hora de decodificar o arquivo sum.
+
+```
+### Fibonacci :calendar:
+
+```
+Limitação na hora de decodificar o arquivo sum.
+
+```
+### CRC-8 e Hamming :calendar:
+
+```
+Foi implementada a decodificação, mas não foi aplicada aos arquivos ainda.
+
+```
 ## Pré-requisitos do Projeto :white_check_mark:
 
 *	Visual Studio
@@ -41,12 +60,18 @@ Também foi implementado o cálculo da entropia para os arquivos Alice29.txt e s
 
 ## Setup inicial :hammer:
 
->git clone https://github.com/amandagrams/universal.entropic.compression.git
+```
+git clone https://github.com/amandagrams/universal.entropic.compression.git
 
+```
 ## Executar :heavy_check_mark:
->Abrir o visual studio universalentropiccompression.sln e clique em universal.entropic.compression 
 
+```
+Abrir o visual studio universalentropiccompression.sln e clique em universal.entropic.compression 
+
+```
 ## Compactar Arquivo :pushpin:
+
 
 ![image](https://user-images.githubusercontent.com/4412478/94617852-a7402380-0280-11eb-9401-c7ae937723c2.png)
 

@@ -34,6 +34,9 @@ namespace universal.entropic.compression.Utils
             public static string Crc8HammingEncodeEliasGammaAlice = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\EliasGamma\\Alice29.ecc".ToString();
             public static string Crc8HammingEncodeUnaryAlice = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Unary\\Alice29.ecc".ToString();
             public static string Crc8HammingEncodeFibonacciAlice = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Fibonacci\\Alice29.ecc".ToString();
+            public static string Crc8HammingEncodeFibonacciSum = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Fibonacci\\sum.ecc".ToString();
+            public static string Crc8HammingEncodeGolombSum = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Golomb\\sum.ecc".ToString();
+            public static string Crc8HammingEncodeUnarySum = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Unary\\sum.ecc".ToString();
 
         }
 

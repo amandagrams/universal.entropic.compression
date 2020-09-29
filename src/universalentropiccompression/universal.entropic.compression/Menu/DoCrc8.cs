@@ -129,6 +129,84 @@ namespace universal.entropic.compression.Menu
             Output.WriteLine("");
             Output.WriteLine("");
 
+            Output.WriteLine("Apply crc8 and hamming to sum encoded with Unary");
+            //Read a file
+            byteList = File.ReadAllBytes(Utils.Utils.FilesEncoded.UnaryEncodeSum).ToList();
+            newBytesFile = byteList.Take(2).ToList();
+            //Applay crc-8 to 2 first bytes
+            newBytesFile.Add(crc8.CRC_8(byteList.Take(2).ToArray()));
+            foreach (var item in byteList.Skip(2).ToList())
+            {
+
+                byte x = item;
+                byte nibble1 = (byte)(x & 0x0F);
+                byte nibble2 = (byte)((x & 0xF0) >> 4);
+                newBytesFile.Add(nibble1);
+                var hammingEncode = hamming.hammingEncode(new byte[] { item });
+                newBytesFile.Add(hammingEncode.First());
+                newBytesFile.Add(nibble2);
+                newBytesFile.Add(hammingEncode.Skip(1).First());
+
+            }
+            File.WriteAllBytes(Utils.Utils.FilesEncoded.Crc8HammingEncodeUnarySum, newBytesFile.ToArray());
+            Output.WriteLine(System.ConsoleColor.Green, "View the file encoded in: " + Utils.Utils.FilesEncoded.Crc8HammingEncodeUnarySum.ToString());
+            newBytesFile.Clear();
+            byteList.Clear();
+            Output.WriteLine("");
+            Output.WriteLine("");
+
+            Output.WriteLine("Apply crc8 and hamming to sum encoded with Fibonacci");
+            //Read a file
+            byteList = File.ReadAllBytes(Utils.Utils.FilesEncoded.FibonacciEncodeSum).ToList();
+            newBytesFile = byteList.Take(2).ToList();
+            //Applay crc-8 to 2 first bytes
+            newBytesFile.Add(crc8.CRC_8(byteList.Take(2).ToArray()));
+            foreach (var item in byteList.Skip(2).ToList())
+            {
+
+                byte x = item;
+                byte nibble1 = (byte)(x & 0x0F);
+                byte nibble2 = (byte)((x & 0xF0) >> 4);
+                newBytesFile.Add(nibble1);
+                var hammingEncode = hamming.hammingEncode(new byte[] { item });
+                newBytesFile.Add(hammingEncode.First());
+                newBytesFile.Add(nibble2);
+                newBytesFile.Add(hammingEncode.Skip(1).First());
+
+            }
+            File.WriteAllBytes(Utils.Utils.FilesEncoded.Crc8HammingEncodeFibonacciSum, newBytesFile.ToArray());
+            Output.WriteLine(System.ConsoleColor.Green, "View the file encoded in: " + Utils.Utils.FilesEncoded.Crc8HammingEncodeFibonacciSum.ToString());
+            newBytesFile.Clear();
+            byteList.Clear();
+            Output.WriteLine("");
+            Output.WriteLine("");
+
+            Output.WriteLine("Apply crc8 and hamming to sum encoded with Golomb");
+            //Read a file
+            byteList = File.ReadAllBytes(Utils.Utils.FilesEncoded.GolombEncodeSum).ToList();
+            newBytesFile = byteList.Take(2).ToList();
+            //Applay crc-8 to 2 first bytes
+            newBytesFile.Add(crc8.CRC_8(byteList.Take(2).ToArray()));
+            foreach (var item in byteList.Skip(2).ToList())
+            {
+
+                byte x = item;
+                byte nibble1 = (byte)(x & 0x0F);
+                byte nibble2 = (byte)((x & 0xF0) >> 4);
+                newBytesFile.Add(nibble1);
+                var hammingEncode = hamming.hammingEncode(new byte[] { item });
+                newBytesFile.Add(hammingEncode.First());
+                newBytesFile.Add(nibble2);
+                newBytesFile.Add(hammingEncode.Skip(1).First());
+
+            }
+            File.WriteAllBytes(Utils.Utils.FilesEncoded.Crc8HammingEncodeGolombSum, newBytesFile.ToArray());
+            Output.WriteLine(System.ConsoleColor.Green, "View the file encoded in: " + Utils.Utils.FilesEncoded.Crc8HammingEncodeGolombSum.ToString());
+            newBytesFile.Clear();
+            byteList.Clear();
+            Output.WriteLine("");
+            Output.WriteLine("");
+
 
 
 

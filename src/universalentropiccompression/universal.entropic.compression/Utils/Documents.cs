@@ -40,6 +40,17 @@ namespace universal.entropic.compression.Domain.Service
                 }
            
         }
+        public byte[] ReadBytes(string path) 
+        {
+            return File.ReadAllBytes(path);
+        }
+
+        public void WriteBytesToFile(string path, byte[] value)
+        {
+
+            File.WriteAllBytes(path, value);
+
+        }
 
         public void WriteText(string path, string  value)
         {

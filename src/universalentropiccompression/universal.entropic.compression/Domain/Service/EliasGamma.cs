@@ -18,95 +18,7 @@ namespace universal.entropic.compression.Domain.Service
         {
             ResultSymbol = new List<string>();
 
-        }
-
-        public byte[] Decode(byte[] File)
-        {
-            var fileContent = new List<string>();
-            
-
-            var bits = new BitArray(File);
-            var values = new bool[bits.Length];
-            bits.CopyTo(values, 0);
-
-            int n = 0, i = 0;
-            bool countUnary = true;
-            var leftOverBinary = new StringBuilder();
-
-            foreach (var val in values)
-            {
-                if (countUnary)
-                {
-                    if (val)
-                        n++;
-                    else
-                        countUnary = false;
-
-                    continue;
-                }
-
-                if (i <= n)
-                {
-                    leftOverBinary.Append(val ? "1" : "0");
-                    i++;
-
-                    if (i == n)
-                    {
-                        var leftOver = Convert.ToInt32(leftOverBinary.ToString(), 2);
-                        var asc = (int)Math.Pow(2, n) + leftOver;
-                        fileContent.Add(((char)asc).ToString());
-
-                        i = 0;
-                        n = 0;
-                        countUnary = true;
-                        leftOverBinary = new StringBuilder();
-                    }
-
-                }
-            }
-
-            return GetByteArray(fileContent);
-        }
-
-
-
-        public int DecodeEliasGamma(string s)
-        {
-            int len = getHeadZerosCount(s);
-
-            if (len <= 0)
-            {
-                return 0;
-            }
-            s = s.Substring(len);
-
-            String binary = s.Substring(0, len + 1);
-
-            int n = binaryStringToInt(binary);
-
-            return n;
-        }
-
-        private List<string> DecimalList(List<string> list) 
-        {
-            for (int i = 0; i < list.Count; i++)
-            {
-                list[i] = ConvertBinaryToDecimal(list[i]);
-            }
-            return list;
-        }
-        private  string ConvertBinaryToDecimal(string a)
-        {
-            double str = 0;
-            char[] arr = a.ToCharArray();
-            int i = arr.Length - 1;
-            foreach (char c in arr)
-            {
-                str = str + Math.Pow(2, i) * Convert.ToDouble(c.ToString());
-                i--;
-            }
-            return str.ToString();
-        }
+        }     
 
         public byte[] Encoder(byte[] values)
         {
@@ -136,6 +48,7 @@ namespace universal.entropic.compression.Domain.Service
             var bits = new BitArray(bools.ToArray());
             bits.CopyTo(bytes, 0);           
 
+            //Elias Gamma Information
             var byteList = bytes.ToList();
             byteList.Insert(0, 1);
             byteList.Insert(1, 0);
@@ -144,107 +57,13 @@ namespace universal.entropic.compression.Domain.Service
 
         }
 
-        public String intToBinaryString(int n)
+        public void Decoder(byte[] bytes, string path)
         {
-            String s = "";
-            while (n > 0)
-            {
-                if ((n & 1) == 0)
-                {
-                    s = "0" + s;
-                }
-                else
-                {
-                    s = "1" + s;
-                }
-                n = n >> 1;
-            }
-            return s;
-        }
-        public String addHeadZeros(String s)
-        {
-            int n = s.Count();
-            String s1 = s;
-            for (int i = 0; i < n - 1; i++)
-            {
-                s1 = "0" + s1;
-            }
-            return s1;
 
-        }
-
-        public int getHeadZerosCount(String s)
-        {
-            char zero = '0';
-            char um = '1';
-            int n = 0;
-            foreach (char c in s)
-            {
-                if (c == zero)
-                {
-                    n++;
-                }
-                else if (c == um)
-                {
-                    return n;
-                }
-            }
-            return n;
-        }
-        public int binaryStringToInt(String binary)
-        {
-            return Convert.ToInt32(binary, 2);
-
-        }
-        public byte[] GetByteArray(List<string> values)
-        {            
-            Byte[] buffer = new Byte[values.Count];
-            for (int i = 0; i < values.Count; i++)
-            {
-                buffer[i] = Convert.ToByte(Convert.ToInt16(values[i]));
-            }
-            return buffer;
-        }
-        private static byte ConvertBoolArrayToByte(bool[] source)
-        {
-            byte result = 0;
-           
-            int index = 8 - source.Length;
-
-           
-            foreach (bool b in source)
-            {
-               
-                if (b)
-                    result |= (byte)(1 << (7 - index));
-
-                index++;
-            }
-
-            return result;
-        }
-
-        private static bool[] ConvertByteToBoolArray(byte b)
-        {
-           
-            bool[] result = new bool[8];
-
-           
-            for (int i = 0; i < 8; i++)
-                result[i] = (b & (1 << i)) == 0 ? false : true;
-
-            
-            Array.Reverse(result);
-
-            return result;
-        }
-
-        public void Decoder(byte[] bytes)
-        {           
-
-            using (FileStream fileStream = File.Create(Utils.Utils.FilesDecoded.EliasGammaDecodeAlice))
+            using (FileStream fileStream = File.Create(path))
             {
                 var fileContent = new StringBuilder();
+                //skip 2 bytes about file encode
                 bytes = bytes.Skip(2).ToArray();
 
                 var bits = new BitArray(bytes);
@@ -257,7 +76,7 @@ namespace universal.entropic.compression.Domain.Service
 
                 foreach (var b in bools)
                 {
-                    //var byteChar = Convert.ToChar(b);
+
                     if (countUnary)
                     {
                         if (!b)
@@ -292,7 +111,9 @@ namespace universal.entropic.compression.Domain.Service
 
                 fileStream.Write(readOnlySpan);
             }
-        }
+        }    
+
+       
     }
 }
 

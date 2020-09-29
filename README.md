@@ -7,6 +7,13 @@
 </p>
 
 > Este projeto tem como objetivo elaborar uma solução computacional que codifique(compacte) e decodifique(descompacte) arquivos, utilizando os seguintes codificadores:
+   *	Golomb
+   *	Elias Gamma
+   *	Fibonacci
+   *	Unary
+   *	Delta
+>A ideia é desenvolver uma solução de compactação utilizando abordagens de codificação a nível de símbolo, mas que também trate a ocorrência da repetição simples de símbolos ao longo do texto.
+O trabalho também tem o objetivo de implementar o CRC-8 para os dois primeiros bytes de um arquivo já codificado e adicionar 7bits de paridade Hamming a cada 4 bits lidos.
 
 
 

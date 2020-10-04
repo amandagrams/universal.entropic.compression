@@ -99,7 +99,7 @@ Abrir o projeto no visual studio universalentropiccompression.sln e pressionar F
 ## Saída de Arquivos
 
 Os arquivos gerados estão estruturados na pasta output da seguinte forma
-
+ ```
 ├── output
 |  ├── Delta
 |  |  ├── Alice29.cod
@@ -133,7 +133,7 @@ Os arquivos gerados estão estruturados na pasta output da seguinte forma
 |     ├── sum.cod
 |     ├── sum.dec
 |     └── sum.ecc
-
+ ```
 
 ## Author
 

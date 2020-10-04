@@ -10,7 +10,7 @@ namespace universal.entropic.compression.Menu
         public DDelta(MenuProgram menu)
          : base("Select File", menu,
                 new Option("Alice29.txt", () => menu.NavigateTo<AliceDecodeDelta>()),
-                new Option("sum", () => menu.NavigateTo<SumEncodeDelta>()))
+                new Option("sum", () => menu.NavigateTo<SumDecodeDelta>()))
         {
         }
     }

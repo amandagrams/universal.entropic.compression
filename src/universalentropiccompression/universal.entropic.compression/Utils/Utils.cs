@@ -24,6 +24,8 @@ namespace universal.entropic.compression.Utils
         {
             public static string GolombEncodeAlice = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Golomb\\Alice29.cod".ToString();
             public static string GolombEncodeSum = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Golomb\\sum.cod".ToString();
+            public static string DeltaEncodeAlice = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Delta\\Alice29.cod".ToString();
+            public static string DeltaEncodeSum = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Delta\\sum.cod".ToString();
             public static string EliasGammaEncodeAlice = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\EliasGamma\\Alice29.cod".ToString();
             public static string EliasGammaEncodeSum = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\EliasGamma\\sum.cod".ToString();
             public static string UnaryEncodeAlice = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Unary\\Alice29.cod".ToString();
@@ -50,6 +52,8 @@ namespace universal.entropic.compression.Utils
             public static string EliasGammaDecodeSum = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\EliasGamma\\sum.dec".ToString();
             public static string FibonacciDecodeAlice = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Fibonacci\\Alice29.dec".ToString();
             public static string FibonacciDecodeSum = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Fibonacci\\sum.dec".ToString();
+            public static string DeltaDecodeAlice = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Delta\\Alice29.dec".ToString();
+            public static string DeltaDecodeSum = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Delta\\sum.dec".ToString();
 
         }
         public enum EncodingTypes

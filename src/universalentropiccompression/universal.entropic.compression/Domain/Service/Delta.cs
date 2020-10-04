@@ -7,24 +7,49 @@ namespace universal.entropic.compression.Domain.Service
 {
     public class Delta 
     {
-        public StringBuilder ResultSymbol { get; set; }
-        public Delta(int encoder)
+        public byte[] Encoder(byte[] file)
         {
-            ResultSymbol = new StringBuilder();
-            ResultSymbol.Append(encoder);
-        }
-        public StringBuilder Encode(byte[] buffer,int length)
-        {
+            
             byte last = 0;
-            for (int i = 0; i < length; i++)
+            byte original;
+            int i;
+            for (i = 0; i < file.Length; i++)
             {
-                var current = buffer[i];
-                buffer[i] = (byte)(current - last);
-                last = current;
+                original = file[i];
+                file[i] -= last;
+                last = original;
             }
 
-            ResultSymbol.Append(last);
-            return ResultSymbol;
+            byte[] shiftRight = new byte[file.Length + 2];
+            for (i = 0; i < file.Length; i++)
+            {
+                shiftRight[(i + 2) % shiftRight.Length] = file[i];
+            }
+
+            shiftRight[0] = 4; 
+            shiftRight[1] = 0;
+
+            var result = shiftRight;
+
+            return result;
+        }
+
+        public byte[] Decode(byte[] file)
+        {
+          
+            byte[] arqBytes = file;
+            byte[] decoded = new byte[file.Length - 2];  
+
+            byte last = 0;
+            int count = 0;
+            for (int i = 2; i < file.Length; i++) 
+            {
+                file[i] += last;
+                last = file[i];
+                decoded[count++] = last;
+            }
+
+            return decoded;
         }
     }
 }

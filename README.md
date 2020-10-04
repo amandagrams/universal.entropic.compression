@@ -70,7 +70,7 @@ git clone https://github.com/amandagrams/universal.entropic.compression.git
 ## Executar :heavy_check_mark:
 
 ```
-Abrir o visual studio universalentropiccompression.sln e clique em universal.entropic.compression 
+Abrir o projeto no visual studio universalentropiccompression.sln e pressionar F5 
 
 ```
 ## Compactar Arquivo :pushpin:

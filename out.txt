@@ -1,0 +1,126 @@
+C:\Users\amanda\Documents\GitHub\universal.entropic.compression
+├── output
+|  ├── Delta
+|  |  ├── Alice29.cod
+|  |  ├── Alice29.dec
+|  |  ├── Alice29.ecc
+|  |  ├── sum.cod
+|  |  ├── sum.dec
+|  |  └── sum.ecc
+|  ├── EliasGamma
+|  |  ├── Alice29.cod
+|  |  ├── Alice29.dec
+|  |  └── Alice29.ecc
+|  ├── Fibonacci
+|  |  ├── Alice29.cod
+|  |  ├── Alice29.dec
+|  |  ├── Alice29.ecc
+|  |  ├── sum.cod
+|  |  ├── sum.dec
+|  |  └── sum.ecc
+|  ├── Golomb
+|  |  ├── Alice29.cod
+|  |  ├── Alice29.dec
+|  |  ├── Alice29.ecc
+|  |  ├── sum.cod
+|  |  ├── sum.dec
+|  |  └── sum.ecc
+|  └── Unary
+|     ├── Alice29.cod
+|     ├── Alice29.dec
+|     ├── Alice29.ecc
+|     ├── sum.cod
+|     ├── sum.dec
+|     └── sum.ecc
+├── README.md
+└── src
+   └── universalentropiccompression
+      ├── menu
+      |  ├── bin
+      |  |  └── Debug
+      |  ├── Input.cs
+      |  ├── Menu.cs
+      |  ├── menu.csproj
+      |  ├── MenuPage.cs
+      |  ├── MenuProgram.cs
+      |  ├── obj
+      |  |  ├── Debug
+      |  |  ├── menu.csproj.nuget.dgspec.json
+      |  |  ├── menu.csproj.nuget.g.props
+      |  |  ├── menu.csproj.nuget.g.targets
+      |  |  ├── project.assets.json
+      |  |  └── project.nuget.cache
+      |  ├── Option.cs
+      |  ├── Output.cs
+      |  ├── Page.cs
+      |  └── StringExtensions.cs
+      ├── universal.entropic.compression
+      |  ├── Archives
+      |  |  ├── alice29.txt
+      |  |  ├── sum
+      |  |  └── teste.txt
+      |  ├── bin
+      |  |  └── Debug
+      |  ├── Domain
+      |  |  ├── Contracts
+      |  |  └── Service
+      |  ├── Menu
+      |  |  ├── AliceDecodeDelta.cs
+      |  |  ├── AliceDecodeEliasGamma.cs
+      |  |  ├── AliceDecodeFibonacci.cs
+      |  |  ├── AliceDecodeGolomb.cs
+      |  |  ├── AliceDecodeUnary.cs
+      |  |  ├── AliceEncodeDelta.cs
+      |  |  ├── AliceEncodeEliasGamma.cs
+      |  |  ├── AliceEncodeFibonacci.cs
+      |  |  ├── AliceEncodeGolomb.cs
+      |  |  ├── AliceEncodeUnary.cs
+      |  |  ├── AliceEntropyCal.cs
+      |  |  ├── CRC8.cs
+      |  |  ├── DDelta.cs
+      |  |  ├── Decoder.cs
+      |  |  ├── DEliasGamma.cs
+      |  |  ├── DFibonacci.cs
+      |  |  ├── DGolomb.cs
+      |  |  ├── DoCrc8.cs
+      |  |  ├── DUnary.cs
+      |  |  ├── EDelta.cs
+      |  |  ├── EEliasGamma.cs
+      |  |  ├── EFibonacci.cs
+      |  |  ├── EGolomb.cs
+      |  |  ├── Encode.cs
+      |  |  ├── Entropy.cs
+      |  |  ├── EUnary.cs
+      |  |  ├── MainMenu.cs
+      |  |  ├── MainPage.cs
+      |  |  ├── SumDecodeDelta.cs
+      |  |  ├── SumDecodeEliasGamma.cs
+      |  |  ├── SumDecodeFibonacci.cs
+      |  |  ├── SumDecodeGolomb.cs
+      |  |  ├── SumDecodeUnary.cs
+      |  |  ├── SumEncodeDelta.cs
+      |  |  ├── SumEncodeEliasGamma.cs
+      |  |  ├── SumEncodeFibonacci.cs
+      |  |  ├── SumEncodeGolomb.cs
+      |  |  ├── SumEncodeUnary.cs
+      |  |  └── SumEntropyCal.cs
+      |  ├── obj
+      |  |  ├── ConsoleApp1.csproj.nuget.dgspec.json
+      |  |  ├── ConsoleApp1.csproj.nuget.g.props
+      |  |  ├── ConsoleApp1.csproj.nuget.g.targets
+      |  |  ├── Debug
+      |  |  ├── project.assets.json
+      |  |  ├── project.nuget.cache
+      |  |  ├── universal.entropic.compression.csproj.nuget.dgspec.json
+      |  |  ├── universal.entropic.compression.csproj.nuget.g.props
+      |  |  └── universal.entropic.compression.csproj.nuget.g.targets
+      |  ├── Program.cs
+      |  ├── universal.entropic.compression.csproj
+      |  └── Utils
+      |     ├── Documents.cs
+      |     ├── StringExtensions.cs
+      |     └── Utils.cs
+      └── universalentropiccompression.sln
+
+directory: 24 file: 98
+

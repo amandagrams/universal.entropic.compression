@@ -39,6 +39,8 @@ namespace universal.entropic.compression.Utils
             public static string Crc8HammingEncodeFibonacciSum = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Fibonacci\\sum.ecc".ToString();
             public static string Crc8HammingEncodeGolombSum = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Golomb\\sum.ecc".ToString();
             public static string Crc8HammingEncodeUnarySum = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Unary\\sum.ecc".ToString();
+            public static string Crc8HammingEncodeDeltaEncodeAlice = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Delta\\Alice29.ecc".ToString();
+            public static string Crc8HammingEncodeDeltaEncodeSum = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Delta\\sum.ecc".ToString();
 
         }
 
@@ -54,6 +56,7 @@ namespace universal.entropic.compression.Utils
             public static string FibonacciDecodeSum = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Fibonacci\\sum.dec".ToString();
             public static string DeltaDecodeAlice = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Delta\\Alice29.dec".ToString();
             public static string DeltaDecodeSum = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName + "\\output\\Delta\\sum.dec".ToString();
+
 
         }
         public enum EncodingTypes

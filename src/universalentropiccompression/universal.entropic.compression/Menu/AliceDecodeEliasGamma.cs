@@ -22,7 +22,7 @@ namespace universal.entropic.compression.Menu
 
             var documents = new Documents();
             var eliasGamma = new EliasGamma();
-            eliasGamma.Decoder(documents.ReadAllBytes(Utils.Utils.FilesEncoded.EliasGammaEncodeAlice,false));
+            eliasGamma.Decoder(documents.ReadAllBytes(Utils.Utils.FilesEncoded.EliasGammaEncodeAlice, false), Utils.Utils.FilesDecoded.EliasGammaDecodeAlice) ;
             
             Output.WriteLine(System.ConsoleColor.Green, "View the file decoded in: " + Utils.Utils.FilesDecoded.EliasGammaDecodeAlice.ToString());
             Output.WriteLine("");

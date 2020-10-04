@@ -70,7 +70,7 @@ git clone https://github.com/amandagrams/universal.entropic.compression.git
 ## Executar :heavy_check_mark:
 
 ```
-Abrir o visual studio universalentropiccompression.sln e clique em universal.entropic.compression 
+Abrir o projeto no visual studio universalentropiccompression.sln e pressionar F5 
 
 ```
 ## Compactar Arquivo :pushpin:
@@ -99,8 +99,41 @@ Abrir o visual studio universalentropiccompression.sln e clique em universal.ent
 ## Saída de Arquivos
 
 Os arquivos gerados estão estruturados na pasta output da seguinte forma
-
-
+ ```
+├── output
+|  ├── Delta
+|  |  ├── Alice29.cod
+|  |  ├── Alice29.dec
+|  |  ├── Alice29.ecc
+|  |  ├── sum.cod
+|  |  ├── sum.dec
+|  |  └── sum.ecc
+|  ├── EliasGamma
+|  |  ├── Alice29.cod
+|  |  ├── Alice29.dec
+|  |  └── Alice29.ecc
+|  ├── Fibonacci
+|  |  ├── Alice29.cod
+|  |  ├── Alice29.dec
+|  |  ├── Alice29.ecc
+|  |  ├── sum.cod
+|  |  ├── sum.dec
+|  |  └── sum.ecc
+|  ├── Golomb
+|  |  ├── Alice29.cod
+|  |  ├── Alice29.dec
+|  |  ├── Alice29.ecc
+|  |  ├── sum.cod
+|  |  ├── sum.dec
+|  |  └── sum.ecc
+|  └── Unary
+|     ├── Alice29.cod
+|     ├── Alice29.dec
+|     ├── Alice29.ecc
+|     ├── sum.cod
+|     ├── sum.dec
+|     └── sum.ecc
+ ```
 
 ## Author
 

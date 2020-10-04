@@ -100,6 +100,39 @@ Abrir o projeto no visual studio universalentropiccompression.sln e pressionar F
 
 Os arquivos gerados estão estruturados na pasta output da seguinte forma
 
+> ├── output
+|  ├── Delta
+|  |  ├── Alice29.cod
+|  |  ├── Alice29.dec
+|  |  ├── Alice29.ecc
+|  |  ├── sum.cod
+|  |  ├── sum.dec
+|  |  └── sum.ecc
+|  ├── EliasGamma
+|  |  ├── Alice29.cod
+|  |  ├── Alice29.dec
+|  |  └── Alice29.ecc
+|  ├── Fibonacci
+|  |  ├── Alice29.cod
+|  |  ├── Alice29.dec
+|  |  ├── Alice29.ecc
+|  |  ├── sum.cod
+|  |  ├── sum.dec
+|  |  └── sum.ecc
+|  ├── Golomb
+|  |  ├── Alice29.cod
+|  |  ├── Alice29.dec
+|  |  ├── Alice29.ecc
+|  |  ├── sum.cod
+|  |  ├── sum.dec
+|  |  └── sum.ecc
+|  └── Unary
+|     ├── Alice29.cod
+|     ├── Alice29.dec
+|     ├── Alice29.ecc
+|     ├── sum.cod
+|     ├── sum.dec
+|     └── sum.ecc
 
 
 ## Author

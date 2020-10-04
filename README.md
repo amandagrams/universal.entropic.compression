@@ -100,7 +100,7 @@ Abrir o projeto no visual studio universalentropiccompression.sln e pressionar F
 
 Os arquivos gerados estão estruturados na pasta output da seguinte forma
 
-> ├── output
+├── output
 |  ├── Delta
 |  |  ├── Alice29.cod
 |  |  ├── Alice29.dec

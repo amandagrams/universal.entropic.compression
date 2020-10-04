@@ -96,6 +96,11 @@ Abrir o visual studio universalentropiccompression.sln e clique em universal.ent
 
 ![image](https://user-images.githubusercontent.com/4412478/94618117-04d47000-0281-11eb-8462-0d4cf1470ad6.png)
 
+## Saída de Arquivos
+
+Os arquivos gerados estão estruturados na pasta output da seguinte forma
+
+
 
 ## Author
 

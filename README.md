@@ -50,13 +50,16 @@ Limitação na hora de decodificar o arquivo sum.
 ### CRC-8 e Hamming :calendar:
 
 ```
-Foi implementada a decodificação, mas não foi aplicada aos arquivos ainda.
+Foi implementada a codificação e aplicado aos arquivos.
+Foi implementada a decodificação, mas não foi aplicada aos arquivos.
 
 ```
 ## Pré-requisitos do Projeto :white_check_mark:
 
 *	Visual Studio
 *	C# 8
+* .Net Core 3.1
+* Solução testada em ambiente windows.
 
 ## Setup inicial :hammer:
 
